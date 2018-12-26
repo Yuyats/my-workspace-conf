@@ -200,9 +200,9 @@ set statusline=[%n]\ %<%f%h%m
 " let g:syntastic_check_on_wq = 0
 
 let g:syntastic_python_checkers = ['flake8']
-let g:flake8_ignore="E1"
+let g:flake8_ignore="E501, W"
 
-" let g:syntastic_python_flake8_args="--max-line-length=200"
+let g:syntastic_python_flake8_args="--max-line-length=200"
 
 autocmd FileType python setlocal completeopt-=preview
 set nocompatible
@@ -217,7 +217,7 @@ if has('vim_starting')
     NeoBundle 'scrooloose/nerdcommenter'
     " NeoBundle 'Shougo/neomru.vim'
     " 良いプラグイン。:Gstatusや:Gdiffなどでgitのコマンドが使える。
-    " NeoBundle 'tpope/vim-fugitive'
+    NeoBundle 'tpope/vim-fugitive'
     " 良いプラグライン。:CtrlPで設定したパス以下のファイルを検索できる。
     NeoBundle "ctrlpvim/ctrlp.vim"
     " 必須プラグイン。インデントに縦線を表示してくれる。
@@ -328,4 +328,8 @@ let g:airline_section_y=''
 
 set synmaxcol=320
 
-" command + vでの貼付け時にinsertモードに入らない
+augroup fileTypeIndent
+    autocmd!
+    autocmd BufNewFile,BufRead *.py setlocal tabstop=4 softtabstop=4 shiftwidth=4
+    autocmd BufNewFile,BufRead *.rb setlocal tabstop=2 softtabstop=2 shiftwidth=2
+augroup END
