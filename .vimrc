@@ -8,8 +8,8 @@ set t_Co=256
 set background=dark
 colorscheme molokai 
 
-function s:setCommentColor()
-  hi Comment cterm=NONE ctermfg=194 
+function! s:setCommentColor()
+  hi Comment cterm=NONE ctermfg=194
   hi Search cterm=NONE ctermfg=160 ctermbg=192
 endfunction
 autocmd VimEnter * call s:setCommentColor()
@@ -22,7 +22,7 @@ set showcmd             " コマンドを画面の最下部に表示する
 set wrap                " 長いテキストの折り返し
 set textwidth=0         " 自動的に改行が入るのを無効化
 set colorcolumn=120      " その代わり80文字目にラインを入れる
-function s:SetCursorLine()
+function! s:SetCursorLine()
   set cursorline
   hi cursorline cterm=underline guifg=green
   " hi Visual ctermbg=blue ctermfg=30
@@ -96,11 +96,11 @@ nmap <silent> <Esc><Esc> :nohlsearch<CR>
 vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v, '\/'), "\n", '\\n', 'g')<CR><CR>
 
 " 検索後にジャンプした際に検索単語を画面中央に持ってくる
-nnoremap n nzz
-nnoremap N Nzz
-nnoremap * *zz
+" nnoremap n nzz
+" nnoremap N Nzz
+nnoremap * *N
 nnoremap # #zz
-nnoremap g* g*zz
+" nnoremap g* g*zz
 nnoremap g# g#zz
 
 " j, k による移動を折り返されたテキストでも自然に振る舞うように変更
@@ -115,6 +115,7 @@ vnoremap <Tab> %
 inoremap [ []<left>
 inoremap ( ()<left>
 inoremap { {}<left>
+" inoremap < <><left>
 
 " Ctrl + hjkl でウィンドウ間を移動
 nnoremap <C-h> <C-w>h
@@ -226,6 +227,12 @@ if has('vim_starting')
     NeoBundle 'vim-airline/vim-airline'
     NeoBundle 'vim-airline/vim-airline-themes'
     NeoBundle "scrooloose/syntastic"
+    " NeoBundle "Shougo/neocomplete.vim"
+    NeoBundle 'google/vim-searchindex'
+    NeoBundle 'LeafCage/yankround.vim'
+    NeoBundle 'dart-lang/dart-vim-plugin'
+    NeoBundle 'digitaltoad/vim-pug'
+    NeoBundle 'leafgarland/typescript-vim'
   call neobundle#end()
 endif
 
@@ -275,10 +282,11 @@ set list listchars=tab:\¦\
 nnoremap O :<C-u>call append(expand('.'), '')<Cr>j
 
 " CtrlPで、不要なフォルダーを除外
+    "\ 2: ['node_modules', 'hg --cwd %s locate -I .'],
 let g:ctrlp_user_command = {
   \ 'types': {
     \ 1: ['.git', 'cd %s && git ls-files --cached --exclude-standard --others'],
-    \ 2: ['node_modules', 'hg --cwd %s locate -I .'],
+    \ 2: ['node_modules'],
     \ },
   \ 'fallback': 'find %s -type f'
   \ }
@@ -303,12 +311,40 @@ imap <C-j> <esc>
 noremap! <C-j> <esc>
 
 let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
 
-let g:airline_theme = 'tomorrow'
-" set statusline+=%F
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" " airline symbols
+" let g:airline_left_sep = ''
+" let g:airline_left_alt_sep = ''
+" let g:airline_right_sep = ''
+" let g:airline_right_alt_sep = ''
+" let g:airline_symbols.branch = ''
+" let g:airline_symbols.readonly = ''
+" let g:airline_symbols.linenr = ''
+
+let g:airline_theme = 'light'
+
+set statusline+=%F
+
 
 set splitright 
 
+" quickbuf用マッピング
 let g:qb_hotkey = "<space><space>"
 
 " if &term =~ '256color'
@@ -325,6 +361,7 @@ noremap <C-a> ^
 
 let g:airline_section_x=''
 let g:airline_section_y=''
+let g:airline_section_c='%F'
 
 set synmaxcol=320
 
@@ -336,3 +373,85 @@ augroup END
 
 vnoremap > >gv
 vnoremap < <gv
+
+
+" "----------------------------------------------------------
+" " neocomplete・neosnippetの設定
+" "----------------------------------------------------------
+" if neobundle#is_installed('neocomplete.vim')
+"     " Vim起動時にneocompleteを有効にする
+"     let g:neocomplete#enable_at_startup = 1
+"     " smartcase有効化. 大文字が入力されるまで大文字小文字の区別を無視する
+"     let g:neocomplete#enable_smart_case = 1
+"     " 3文字以上の単語に対して補完を有効にする
+"     let g:neocomplete#min_keyword_length = 3
+"     " 区切り文字まで補完する
+"     let g:neocomplete#enable_auto_delimiter = 1
+"     " 1文字目の入力から補完のポップアップを表示
+"     let g:neocomplete#auto_completion_start_length = 1
+"     " バックスペースで補完のポップアップを閉じる
+"     inoremap <expr><BS> neocomplete#smart_close_popup()."<C-h>"
+
+"     " " エンターキーで補完候補の確定. スニペットの展開もエンターキーで確定・・・・・・②
+"     " imap <expr><CR> neosnippet#expandable() ? "<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "<C-y>" : "<CR>"
+"     " " タブキーで補完候補の選択. スニペット内のジャンプもタブキーでジャンプ・・・・・・③
+"     " imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
+" endif
+
+
+
+let g:indentLine_faster = 1
+nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
+
+" let g:indentLine_setColors = 0
+" Vim
+let g:indentLine_color_term = 110
+
+" GVim
+let g:indentLine_color_gui = '#A4E57E'
+
+" none X terminal
+let g:indentLine_color_tty_light = 7 " (default: 4)
+let g:indentLine_color_dark = 1 " (default: 2)
+
+" Background (Vim, GVim)
+" let g:indentLine_bgcolor_term = 
+let g:indentLine_bgcolor_gui = '#FF5F00'
+
+
+" yankround.vim {{{
+"" キーマップ
+nmap p <Plug>(yankround-p)
+nmap P <Plug>(yankround-P)
+nmap <C-p> <Plug>(yankround-prev)
+nmap <C-n> <Plug>(yankround-next)
+"" 履歴取得数
+let g:yankround_max_history = 50
+""履歴一覧(kien/ctrlp.vim)
+nnoremap <silent>g<C-p> :<C-u>CtrlPYankRound<CR>
+
+
+let g:netrw_list_hide= '^\.'
+
+
+
+if &term =~ '256color'
+    set t_ut=
+endif
+
+
+" vimgrep
+set wildignore=*.dll,*.exe,tags,*.jpg,*jpeg,*.png,*.mp3,*.svg
+set grepprg=grep\ -rnIH\ --exclude-dir=.svn\ --exclude-dir=.git\ --exclude-dir=node_modules
+set wildignore=*/node_modules/*
+autocmd QuickfixCmdPost vimgrep copen
+autocmd QuickfixCmdPost grep copen
+
+" grep の書式を挿入
+nnoremap <expr> <Space>g ':vimgrep /\<' . expand('<cword>') . '\>/j **/*.' . expand('%:e')
+nnoremap <expr> <Space>G ':sil grep! ' . expand('<cword>') . ' *'
+
+
+" json
+set conceallevel=0
+let g:vim_json_syntax_conceal = 0
