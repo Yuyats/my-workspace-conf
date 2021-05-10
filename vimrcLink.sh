@@ -1,2 +1,2 @@
 #!/bin/sh
-ln -sf ~/vimrc/.vimrc ~/.vimrc
+ln -sf ~/my-workspace-conf/.vimrc ~/.vimrc
