@@ -1,8 +1,8 @@
-# vimrc
+# my-workspace-conf
 
 This is my workspace config files.
 
-Guide
+## Guide
 ```
 cd
 
@@ -15,4 +15,6 @@ sh vimrcLink.sh
 
 # Use the .tmux.conf file in this directory as default config file in local.
 sh tmuxLink.sh
+
+# You can use .zshrc by copying some of its lines you want to use.
 ```
