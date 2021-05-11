@@ -1,0 +1,172 @@
+{
+    "workbench.editorAssociations": [
+        {
+            "viewType": "jupyter.notebook.ipynb",
+            "filenamePattern": "*.ipynb"
+        }
+    ],
+    "vim.vimrc.enable": true,
+    "vim.vimrc.path": "~/.vimrc",
+    "settings": {
+        "files.exclude": {
+            "**/.git": true, // this is a default value
+            "**/.DS_Store": true, // this is a default value
+            "**/node_modules": true, // this excludes all folders 
+            // named "node_modules" from 
+            // the explore tree
+            "**/venv": true,
+            "**/venv/": true,
+            "**/venv/**": true,
+            "venv/**": true
+        }
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.formatOnPaste": true,
+    "editor.formatOnType": true,
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[vue]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "vim.hlsearch": true,
+    "vim.useSystemClipboard": true,
+    "workbench.colorTheme": "Andromeda Colorizer",
+    "gitlens.advanced.messages": {
+        "suppressLineUncommittedWarning": true
+    },
+    "indentRainbow.colors": [
+        " ()[]{}',\"`─",
+        "rgba(255,255,64,0.10)",
+        "rgba(127,255,127,0.10)",
+        "rgba(255,127,255,0.10)",
+        "rgba(79,236,236,0.10)"
+    ],
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": false,
+        "strings": true,
+    },
+    "editor.wordBasedSuggestions": true,
+    "editor.wordBasedSuggestionsMode": "matchingDocuments",
+    "todo-tree.tree.showScanModeButton": false,
+    "editor.tabSize": 2,
+    "[markdown]": {
+        "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+    },
+    "auto-close-tag.disableOnLanguage": [
+        "typescript"
+    ],
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "workbench.tree.indent": 35,
+    "search.useIgnoreFilesByDefault": true,
+    "search.exclude": {
+        "*.mo": true,
+        "**.pyc": true,
+        "**/**venv": true,
+        "**/build": true,
+        "**/htmlcov": true,
+        "**/node_modules": true,
+        "**/src/rappid": true,
+        "**/static": true,
+        "**/staticfiles": true,
+        "**/venv*": true
+    },
+    "workbench.sideBar.location": "right",
+    "workbench.iconTheme": "Monokai Pro Icons",
+    "powermode.enabled": true,
+    "powermode.presets": "exploding-rift",
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "powermode.enableStatusBarComboCounter": false,
+    "powermode.enableStatusBarComboTimer": false,
+    "files.exclude": {
+        "*.mo": true,
+        "**/build": true,
+        "**/node_modules": true
+    },
+    "vim.visualstar": true,
+    "indentRainbow.updateDelay": 150,
+    "vim.statusBarColorControl": false,
+    "editor.minimap.renderCharacters": false,
+    "editor.minimap.enabled": false,
+    "python.linting.ignorePatterns": [
+        ".vscode/*.py",
+        "**/site-packages/**/*.py",
+        "venv",
+        "venv*/",
+        "db.sqlite3",
+        "db.sqlite3*",
+        "db.*",
+        ".git",
+        "media",
+        "media/",
+        ".git/**",
+        "media/**",
+        "__pycache__/",
+        "__pycache__/**",
+        "*.mo",
+        "**/*.mo",
+        "**/__pycache__/**",
+        "**/media/**",
+        "**/.git/**",
+        "**/db.*",
+        "**/node_modules/**",
+        "**/assets/"
+    ],
+    "python.jediMemoryLimit": 128,
+    "python.languageServer": "Pylance",
+    "files.watcherExclude": {
+        "*.jpeg": true,
+        "*.png": true,
+        "**/__pycache__/**": true,
+        "**/*.pyc": true,
+        "**/build": true,
+        "**/db.*": true,
+        "**/Downloads/**": true,
+        "**/GoogleDrive/**": true,
+        "**/venv*/**": true,
+        "**/venv/**": true,
+        "**/VirtualBox VMs/**": true,
+        "*mp3": true,
+        "*mp4": true
+    },
+    "todo-tree.filtering.excludeGlobs": [
+        "**/node_modules",
+        "**/venv*"
+    ],
+    "window.zoomLevel": -1,
+    "editor.scrollBeyondLastLine": false,
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.mouseWheelZoom": true,
+    "sqltools.useNodeRuntime": true,
+    "sass.lint.enable": true,
+    "eslint.format.enable": true,
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "debug.javascript.usePreview": false,
+    "vetur.experimental.templateInterpolationService": true,
+    "vetur.validation.templateProps": true,
+    "scss.lint.duplicateProperties": "warning",
+    "scss.lint.float": "warning",
+    "scss.lint.hexColorLength": "warning",
+    "scss.lint.idSelector": "warning",
+    "scss.lint.important": "warning",
+    "scss.lint.zeroUnits": "warning",
+    "editor.formatOnSave": true,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.python"
+    },
+    "python.linting.flake8Enabled": true,
+    "editor.quickSuggestionsDelay": 8,
+    "editor.suggest.localityBonus": true,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue"
+}
