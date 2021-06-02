@@ -10,7 +10,7 @@ augroup END
 """ 表示関係
 set t_Co=256
 set background=dark
-colorscheme molokai
+" colorscheme molokai
 
 function! s:setCommentColor()
   hi Comment cterm=NONE ctermfg=194
