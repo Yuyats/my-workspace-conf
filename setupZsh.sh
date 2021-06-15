@@ -1,2 +1,2 @@
 #!/bin/sh
-cat alias.txt >> ~/.zshrc
+cat ~/my-workspace-conf/alias.txt >> ~/.zshrc
