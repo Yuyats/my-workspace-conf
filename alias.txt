@@ -23,7 +23,7 @@ alias dc='docker'
 alias dcps='docker ps'
 alias dcpsa='docker ps -a'
 alias img='docker image ls'
-alias cmps='docker-compose'
+alias cmps='docker compose'
 
 alias scls='screen -ls'
 alias sc='screen'
