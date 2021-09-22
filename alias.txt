@@ -34,6 +34,7 @@ alias tmls='tmux ls'
 alias tma='tmux a -t'
 alias tmks='tmux kill-session -t'
 alias hs="history -d"
+alias hsg="history -d | grep"
 alias tp="top -n 10 -s 3"
 
 alias rm="rm -iv"
